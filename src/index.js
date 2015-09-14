@@ -1,8 +1,7 @@
-'use strict';
-
 import React from 'react';
+import App from './App';
 
 React.render(
-  <h1>Hello, world!</h1>,
+  <App />,
   document.getElementById('container')
 );

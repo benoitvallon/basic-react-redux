@@ -1,5 +1,7 @@
 module.exports = {
-  entry: "./src/helloworld.js",
+  entry: [
+    './src/index.js'
+  ],
   output: {
     path: __dirname,
     filename: "./build/helloworld.js"
