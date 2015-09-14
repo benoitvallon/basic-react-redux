@@ -1,0 +1,15 @@
+{
+  "name": "basic-react-redux",
+  "version": "0.0.1",
+  "description": "A basic boilerplate repo for a react and redux app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "redux"
+  ],
+  "author": "Benoit VALLON",
+  "license": "ISC"
+}
