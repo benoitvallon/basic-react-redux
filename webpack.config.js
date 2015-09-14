@@ -1,7 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 
 module.exports = {
   entry: [
@@ -15,8 +13,7 @@ module.exports = {
     filename: 'helloworld.js'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('styles.css', { allChunks: true })
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [
@@ -27,7 +24,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules')
+        loaders: ['style-loader', 'css-loader?modules'],
+        include: path.join(__dirname, 'src')
       }
     ]
   }
