@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
 React.render(
   <h1>Hello, world!</h1>,
