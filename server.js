@@ -5,7 +5,7 @@ var webpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 
 new webpackDevServer(webpack(config), config.devServer)
-  .listen(3000, 'localhost', function (err, result) {
+  .listen(3000, 'localhost', function (err) {
     if (err) {
       console.log(err);
     }

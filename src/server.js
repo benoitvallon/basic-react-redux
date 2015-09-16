@@ -2,7 +2,6 @@
 
 import express from 'express';
 import React from 'react';
-import Router from 'react-router';
 const app = express();
 var host = 'localhost';
 var port = 9000;
@@ -37,10 +36,10 @@ app.use((req, res) => {
       res.send('<!doctype html>\n' +
           React.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component}/>));
     }
-  })
-})
+  });
+});
 
-var server = app.listen({
+app.listen({
   host: host,
   port: port
 }, function () {

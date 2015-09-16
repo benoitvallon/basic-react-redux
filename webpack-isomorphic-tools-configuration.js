@@ -1,3 +1,5 @@
+'use strict';
+
 var webpackIsomorphicToolsPlugin  = require('webpack-isomorphic-tools/plugin');
 
 module.exports = {
@@ -16,7 +18,7 @@ module.exports = {
     },
     style_modules: {
       extension: 'scss',
-      filter: function(m, regex, options, log) {
+      filter: function(m, regex, options) {
         if (!options.development) {
           return regex.test(m.name);
         }
@@ -24,7 +26,7 @@ module.exports = {
         //this ensures that the proper scss module is returned, so that namePrefix variable is no longer needed
         return (regex.test(m.name) && m.name.slice(-2) === 'ss' && m.reasons[0].moduleName.slice(-2) === 'ss');
       },
-      naming: function(m, options, log) {
+      naming: function(m) {
         //find index of '/src' inside the module name, slice it and resolve path
         var srcIndex = m.name.indexOf('/src');
         var name = '.' + m.name.slice(srcIndex);
@@ -37,7 +39,7 @@ module.exports = {
         }
         return name;
       },
-      parser: function(m, options, log) {
+      parser: function(m, options) {
         if (m.source) {
           var regex = options.development ? /exports\.locals = ((.|\n)+);/ : /module\.exports = ((.|\n)+);/;
           var match = m.source.match(regex);
@@ -46,4 +48,4 @@ module.exports = {
       }
     }
   }
-}
+};

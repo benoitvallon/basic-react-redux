@@ -1,6 +1,6 @@
 'use strict';
 
-import React, {Component, PropTypes} from 'react';
+import React, { Component } from 'react';
 
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
@@ -13,7 +13,7 @@ import React, {Component, PropTypes} from 'react';
  */
 export default class Html extends Component {
   render() {
-    const {assets, component, store} = this.props;
+    const { assets, component } = this.props;
     const content = React.renderToString(component);
 
     return (

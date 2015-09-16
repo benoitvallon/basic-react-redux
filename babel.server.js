@@ -5,7 +5,7 @@ require('babel/register');
 
 global._development_ = process.env.NODE_ENV !== 'production';
 
-var WebpackIsomorphicTools = require('webpack-isomorphic-tools')
+var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 
 // this must be equal to your Webpack configuration "context" parameter
 var path = require('path');
@@ -21,5 +21,5 @@ global.webpackIsomorphicTools = new WebpackIsomorphicTools(require('./webpack-is
   .server(rootDir, function() {
     // webpack-isomorphic-tools is all set now.
     // here goes all your web application code:
-    require('./src/server')
-  })
+    require('./src/server');
+  });

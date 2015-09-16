@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Router, Route, Link } from 'react-router';
+import { Link } from 'react-router';
 
 import styles from './app.scss';
 
