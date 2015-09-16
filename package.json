@@ -17,6 +17,8 @@
     "babel": "^5.8.23",
     "express": "^4.13.3",
     "react": "^0.13.3",
+    "react-redux": "^2.1.2",
+    "redux": "^3.0.0",
     "webpack-isomorphic-tools": "^0.8.8"
   },
   "devDependencies": {
