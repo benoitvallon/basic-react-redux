@@ -1,6 +1,8 @@
 'use strict';
 
 import express from 'express';
+import favicon from 'serve-favicon';
+import path from 'path';
 import React from 'react';
 const app = express();
 var host = 'localhost';
@@ -11,6 +13,8 @@ import createLocation from 'history/lib/createLocation';
 import { RoutingContext, match } from 'react-router';
 
 import Html from './Html';
+
+app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
 
 app.use((req, res) => {
   // clear require() cache if in development mode
