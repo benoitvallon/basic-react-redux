@@ -10,5 +10,5 @@ import routes from './routes';
 // It does all the fancy routing stuff for us.
 React.render(
   <Router routes={routes} history={createBrowserHistory()}/>,
-  document.body
+  document.getElementById('content')
 )

@@ -11,6 +11,8 @@ import routes from './routes';
 import createLocation from 'history/lib/createLocation';
 import { RoutingContext, match } from 'react-router';
 
+import Html from './Html';
+
 app.use((req, res) => {
   // clear require() cache if in development mode
   // (makes asset hot reloading work)
@@ -28,9 +30,12 @@ app.use((req, res) => {
     } else if (renderProps === null) {
       res.send(404, 'Not found');
     } else {
-      res.send(React.renderToString(
-        <RoutingContext assets={webpackIsomorphicTools.assets()} {...renderProps}/>
-      ));
+      const component = (
+        <RoutingContext {...renderProps}/>
+      );
+
+      res.send('<!doctype html>\n' +
+          React.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component}/>));
     }
   })
 })
