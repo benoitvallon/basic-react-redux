@@ -1,4 +1,4 @@
-var WebpackIsomorphicToolsPlugin  = require('webpack-isomorphic-tools/plugin');
+var webpackIsomorphicToolsPlugin  = require('webpack-isomorphic-tools/plugin');
 
 module.exports = {
   webpack_assets_file_path: 'webpack-stats.json',
@@ -12,7 +12,7 @@ module.exports = {
         'gif',
         'svg'
       ],
-      parser: WebpackIsomorphicToolsPlugin.url_loader_parser
+      parser: webpackIsomorphicToolsPlugin.url_loader_parser
     },
     style_modules: {
       extension: 'scss',

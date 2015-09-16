@@ -2,30 +2,21 @@ var path = require('path');
 var webpack = require('webpack');
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 
-var webpackIsomorphicToolsPlugin =
-  // webpack-isomorphic-tools settings reside in a separate .js file
-  // (because they will be used in the web server code too).
-  new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools-configuration'))
-  // also enter development mode since it's a development webpack configuration
-  // (see below for explanation)
-  .development()
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(
+    require('./webpack-isomorphic-tools-configuration'));
 
 module.exports = {
   context: path.resolve(__dirname, '.'),
   entry: [
-    'webpack-dev-server/client?http://0.0.0.0:3000', // WebpackDevServer host and port
+    'webpack-dev-server/client?http://localhost:3000', // WebpackDevServer host and port
     'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
     './src/index.js'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
-    publicPath: '/assets/',
+    path: path.join(__dirname, 'build'),
+    publicPath: 'http://localhost:3000/assets/',
     filename: 'helloworld.js'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    webpackIsomorphicToolsPlugin
-  ],
   module: {
     loaders: [
       {
@@ -35,10 +26,32 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader?modules!sass-loader'],
-        include: path.join(__dirname, 'src')
+        loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!sass?outputStyle=expanded&sourceMap'
+      },
+      {
+        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        loader: 'url-loader?limit=10240'
       }
     ]
   },
-  devtool: '#inline-source-map'
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    webpackIsomorphicToolsPlugin.development()
+  ],
+  progress: true, // Display a compilation progress to stderr
+  devtool: 'inline-source-map',
+  devServer : {
+    publicPath: 'http://localhost:3000/assets/',
+    // contentBase: 'http://localhost:3000',
+    hot: true,
+    historyApiFallback: true,
+    stats: {
+      colors: true // Use colors to display the statistics
+    },
+    inline: true,
+    // quiet: true,
+    // noInfo: true,
+    // lazy: false,
+    headers: { 'Access-Control-Allow-Origin': '*' }
+  }
 };
