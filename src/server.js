@@ -4,6 +4,7 @@ import express from 'express';
 import favicon from 'serve-favicon';
 import path from 'path';
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 const app = express();
 var host = 'localhost';
 var port = 9000;
@@ -40,12 +41,12 @@ app.use((req, res) => {
     } else {
       const component = (
         <Provider store={store}>
-          {() => <RoutingContext {...renderProps}/>}
+          <RoutingContext {...renderProps}/>
         </Provider>
       );
 
       res.send('<!doctype html>\n' +
-          React.renderToString(<Html store={store} assets={webpackIsomorphicTools.assets()} component={component}/>));
+          ReactDOMServer.renderToString(<Html store={store} assets={webpackIsomorphicTools.assets()} component={component}/>));
     }
   });
 });

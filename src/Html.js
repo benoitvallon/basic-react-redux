@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
 
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
@@ -14,7 +15,7 @@ import React, { Component } from 'react';
 export default class Html extends Component {
   render() {
     const { assets, component, store } = this.props;
-    const content = React.renderToString(component);
+    const content = ReactDOMServer.renderToString(component);
 
     return (
       <html lang="en-us">
