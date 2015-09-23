@@ -13,7 +13,7 @@ import React, { Component } from 'react';
  */
 export default class Html extends Component {
   render() {
-    const { assets, component } = this.props;
+    const { assets, component, store } = this.props;
     const content = React.renderToString(component);
 
     return (
@@ -30,6 +30,7 @@ export default class Html extends Component {
         </head>
         <body>
           <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
+          <script dangerouslySetInnerHTML={{__html: `window.__INITIAL_STATE__=${JSON.stringify(store.getState())};`}} />
           <script src={assets.javascript.main}/>
         </body>
       </html>

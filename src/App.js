@@ -32,9 +32,7 @@ class App extends Component {
 
 // Which props do we want to inject, given the global state?
 function mapStateToProps(state) {
-  return {
-    counter: state
-  };
+  return state;
 }
 
 // Wrap the component to inject dispatch and state into it

@@ -12,6 +12,10 @@ import routes from './routes';
 import createLocation from 'history/lib/createLocation';
 import { RoutingContext, match } from 'react-router';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import counter from './reducers';
+
 import Html from './Html';
 
 app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
@@ -24,6 +28,7 @@ app.use((req, res) => {
   }
 
   let location = createLocation(req.url);
+  let store = createStore(counter);
 
   match({ routes, location }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
@@ -34,11 +39,13 @@ app.use((req, res) => {
       res.send(404, 'Not found');
     } else {
       const component = (
-        <RoutingContext {...renderProps}/>
+        <Provider store={store}>
+          {() => <RoutingContext {...renderProps}/>}
+        </Provider>
       );
 
       res.send('<!doctype html>\n' +
-          React.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component}/>));
+          React.renderToString(<Html store={store} assets={webpackIsomorphicTools.assets()} component={component}/>));
     }
   });
 });

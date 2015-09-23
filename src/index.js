@@ -10,7 +10,10 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import counter from './reducers';
 
-let store = createStore(counter);
+// Grab the state from a global injected into server-generated HTML
+const initialState = window.__INITIAL_STATE__;
+
+let store = createStore(counter, initialState);
 
 // We render a <Router> with some <Route>s.
 // It does all the fancy routing stuff for us.
