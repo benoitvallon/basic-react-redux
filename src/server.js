@@ -5,6 +5,8 @@ import favicon from 'serve-favicon';
 import path from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import compression from 'compression';
+
 const app = express();
 var host = 'localhost';
 var port = 9000;
@@ -19,6 +21,7 @@ import counter from './reducers';
 
 import Html from './Html';
 
+app.use(compression());
 app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
 app.use(require('serve-static')(path.join(__dirname, '..', 'public')));
 
