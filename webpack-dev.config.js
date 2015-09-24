@@ -17,7 +17,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build'),
     publicPath: 'http://localhost:3000/assets/',
-    filename: 'helloworld.js'
+    // filename: 'build-client-script.js',
+    filename: '[name]-[hash].js',
+    chunkFilename: '[name]-[chunkhash].js'
   },
   module: {
     loaders: [

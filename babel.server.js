@@ -7,7 +7,7 @@ global._development_ = process.env.NODE_ENV !== 'production';
 
 var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 
-// this must be equal to your Webpack configuration "context" parameter
+// this must be equal to your Webpack configuration 'context' parameter
 var path = require('path');
 var rootDir = path.resolve(__dirname, '.');
 

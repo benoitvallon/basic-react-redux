@@ -1,5 +1,5 @@
 node_modules
-build/helloworld.js
+public/build
 
 # webpack-isomorphic-tools
 /webpack-stats.debug.json

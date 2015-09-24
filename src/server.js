@@ -20,6 +20,7 @@ import counter from './reducers';
 import Html from './Html';
 
 app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
+app.use(require('serve-static')(path.join(__dirname, '..', 'public')));
 
 app.use((req, res) => {
   // clear require() cache if in development mode
