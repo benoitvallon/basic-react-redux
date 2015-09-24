@@ -23,16 +23,26 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: [
+          'react-hot-loader',
+          'babel-loader'
+        ],
         include: path.join(__dirname, 'src')
       },
       {
         test: /\.scss$/,
-        loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer-loader?browsers=last 2 versions!sass?outputStyle=expanded&sourceMap'
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]',
+          'autoprefixer-loader?browsers=last 2 versions',
+          'sass-loader?outputStyle=expanded&sourceMap'
+        ]
       },
       {
         test: webpackIsomorphicToolsPlugin.regular_expression('images'),
-        loader: 'url-loader?limit=10240'
+        loaders: [
+          'url-loader?limit=10240'
+        ]
       }
     ]
   },
