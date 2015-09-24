@@ -63,7 +63,15 @@ module.exports = {
 
     // css files from the extract-text-plugin loader
     new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
-    // new webpack.HotModuleReplacementPlugin(),
+
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+
     webpackIsomorphicToolsPlugin
   ],
   progress: true, // Display a compilation progress to stderr
