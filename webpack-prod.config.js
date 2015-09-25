@@ -14,7 +14,6 @@ module.exports = {
   entry: [
     './src/index.js'
   ],
-
   output: {
     path: path.join(__dirname, '/public/build'),
     publicPath: '/build/',
@@ -56,14 +55,14 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      _DEVELOPMENT_: false
+    }),
     new CleanPlugin(['./public/build']),
-
     // ignore dev config
     new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
-
     // css files from the extract-text-plugin loader
     new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
-
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -71,7 +70,6 @@ module.exports = {
         warnings: false
       }
     }),
-
     webpackIsomorphicToolsPlugin
   ],
   progress: true, // Display a compilation progress to stderr

@@ -49,6 +49,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      _DEVELOPMENT_: true
+    }),
     new webpack.HotModuleReplacementPlugin(),
     webpackIsomorphicToolsPlugin.development()
   ],

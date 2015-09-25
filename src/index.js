@@ -38,9 +38,11 @@ const component = (
 );
 
 ReactDOM.render(component, document.getElementById('content'));
-ReactDOM.render(<div>
-  {component}
-  <DebugPanel top right bottom key="debugPanel">
-    <DevTools store={store} monitor={LogMonitor}/>
-  </DebugPanel>
-</div>, document.getElementById('content'));
+if(_DEVELOPMENT_) {
+  ReactDOM.render(<div>
+    {component}
+    <DebugPanel top right bottom key="debugPanel">
+      <DevTools store={store} monitor={LogMonitor}/>
+    </DebugPanel>
+  </div>, document.getElementById('content'));
+}

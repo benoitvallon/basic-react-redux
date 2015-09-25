@@ -3,7 +3,7 @@
 //  enable runtime transpilation to use ES6/7 in node
 require('babel/register');
 
-global._development_ = process.env.NODE_ENV !== 'production';
+global._DEVELOPMENT_ = process.env.NODE_ENV !== 'production';
 
 var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 
@@ -15,7 +15,7 @@ var rootDir = path.resolve(__dirname, '.');
 global.webpackIsomorphicTools = new WebpackIsomorphicTools(require('./webpack-isomorphic-tools-configuration'))
   // enter development mode if needed
   // (for example, based on a Webpack DefinePlugin variable)
-  .development(_development_)
+  .development(_DEVELOPMENT_)
   // initializes a server-side instance of webpack-isomorphic-tools
   // (the first parameter is the base path for your project)
   .server(rootDir, function() {

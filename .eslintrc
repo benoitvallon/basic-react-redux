@@ -22,7 +22,7 @@
     "react"
   ],
   "globals": {
-    "_development_": true,
+    "_DEVELOPMENT_": true,
     "webpackIsomorphicTools": true
   }
 }

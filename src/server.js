@@ -28,7 +28,7 @@ app.use(require('serve-static')(path.join(__dirname, '..', 'public')));
 app.use((req, res) => {
   // clear require() cache if in development mode
   // (makes asset hot reloading work)
-  if (_development_) {
+  if (_DEVELOPMENT_) {
     webpackIsomorphicTools.refresh();
   }
 
