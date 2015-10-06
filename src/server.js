@@ -12,7 +12,7 @@ var host = 'localhost';
 var port = 9000;
 
 import routes from './routes';
-import createLocation from 'history/lib/createLocation';
+import { createMemoryHistory } from 'history';
 import { RoutingContext, match } from 'react-router';
 
 import { createStore } from 'redux';
@@ -32,7 +32,7 @@ app.use((req, res) => {
     webpackIsomorphicTools.refresh();
   }
 
-  let location = createLocation(req.url);
+  let location = createMemoryHistory().createLocation(req.url);
   let store = createStore(counter);
 
   match({ routes, location }, (error, redirectLocation, renderProps) => {
