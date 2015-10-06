@@ -7,11 +7,30 @@ import styles from './app.scss';
 
 import { connect } from 'react-redux';
 import { increment, decrement } from './actions/counter';
+import { fetchPosts } from './actions/posts';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.handleRefreshClick = this.handleRefreshClick.bind(this);
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchPosts('graphql'));
+  }
+
+  handleRefreshClick(e) {
+    e.preventDefault();
+
+    const { dispatch } = this.props;
+    dispatch(fetchPosts('reactjs'));
+  }
+
   render() {
     // Injected by connect() call:
-    const { dispatch, counter } = this.props;
+    const { dispatch, counter, posts } = this.props;
 
     return (
       <div>
@@ -24,7 +43,20 @@ class App extends Component {
           Clicked: {counter} times
           <button onClick={() => dispatch(increment())}>+</button>
           <button onClick={() => dispatch(decrement())}>-</button>
+          <a href='#'
+             onClick={this.handleRefreshClick}>
+            Refresh
+          </a>
         </div>
+        {posts.length > 0 &&
+          <div>
+            <ul>
+              {posts.map((post, i) =>
+                <li key={i}>{post.title}</li>
+              )}
+            </ul>
+          </div>
+        }
       </div>
     );
   }
@@ -32,7 +64,13 @@ class App extends Component {
 
 // Which props do we want to inject, given the global state?
 function mapStateToProps(state) {
-  return state;
+  const { counter } = state.counter;
+  const { posts } = state.posts;
+
+  return {
+    counter,
+    posts
+  };
 }
 
 // Wrap the component to inject dispatch and state into it

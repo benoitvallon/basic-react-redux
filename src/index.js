@@ -7,7 +7,8 @@ import { Router } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import routes from './routes';
 
-import { compose, createStore } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import counter from './reducers';
 
@@ -20,6 +21,7 @@ import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 const initialState = window.__INITIAL_STATE__;
 
 const finalCreateStore = compose(
+  applyMiddleware(thunkMiddleware),
   // Provides support for DevTools:
   devTools(),
   // Lets you write ?debug_session=<name> in address bar to persist debug sessions
