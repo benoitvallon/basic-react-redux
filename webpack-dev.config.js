@@ -38,7 +38,18 @@ module.exports = {
           'css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]',
           'autoprefixer-loader?browsers=last 2 versions',
           'sass-loader?outputStyle=expanded&sourceMap'
-        ]
+        ],
+        exclude: path.join(__dirname, 'src/styles/bootstrap.scss')
+      },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=2&localIdentName=[local]',
+          'autoprefixer-loader?browsers=last 2 versions',
+          'sass-loader'
+        ],
+        include: path.join(__dirname, 'src/styles/bootstrap.scss')
       },
       {
         test: webpackIsomorphicToolsPlugin.regular_expression('images'),

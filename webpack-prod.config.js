@@ -44,7 +44,16 @@ module.exports = {
         loader: ExtractTextPlugin.extract(
           'style',
           'css?modules&importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true'
-        )
+        ),
+        exclude: path.join(__dirname, 'src/styles/bootstrap.scss')
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract(
+          'style',
+          'css?modules&importLoaders=2&sourceMap&localIdentName=[local]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true'
+        ),
+        include: path.join(__dirname, 'src/styles/bootstrap.scss')
       },
       {
         test: webpackIsomorphicToolsPlugin.regular_expression('images'),
